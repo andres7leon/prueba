@@ -1,0 +1,111 @@
+body {
+    font-family: Montserrat;
+}
+
+
+/**** Navbar ****/
+
+.cont-btn-search {
+    background: red;
+    height: 40px;
+    width: 66%;
+    position: relative;
+}
+
+.cont-btn-search input[type="text"]{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 0 20px 0 10px;
+    outline-color: #000;
+    border: 0;
+}
+
+.cont-btn-search button{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background: none;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.cont-btn-search button i{
+    vertical-align: middle;
+    color: #9E9E9E;
+}
+
+/**** sort ***/
+
+.text-sort {
+    font-weight: 600;
+    font-size: 1.6em;
+    vertical-align: middle;
+}
+
+
+/**** cards or list Characters ****/
+
+.img-character {
+    border-radius: 100%;
+    width: 110%;
+    margin-top: -20px;
+    margin-left: -15px;
+    -webkit-box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
+    box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
+}
+
+.text-character {
+    margin-top: -16px;
+    font-weight: 700;
+    color:#2d2727;
+}
+
+.description-character {
+    font-size: 0.8em;
+    color: #796f6e;
+}
+
+.btn-character {
+    border: 0;
+    outline: none;
+    color: #fff;
+    background-color: #ec1e23;
+    padding: 7px;
+    font-weight: 600;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+
+
+/**** global ****/
+
+p {
+    word-wrap: break-word;    
+}
+
+.bg-dark2{
+    background-color: #2d2727;
+}
+
+.bg-light2 {
+    background-color: #f4f4f4;
+}
+
+.color-dark2 {
+    color:#2d2727;
+}
+
+.card {
+    border-radius: inherit;
+    border: none;
+}
+

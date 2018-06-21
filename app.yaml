@@ -1,0 +1,29 @@
+application: 
+version: 
+runtime: php55
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /css
+  static_dir: css
+  
+- url: /fonts
+  static_dir: fonts
+  
+- url: /images
+  static_dir: images
+
+- url: /js
+  static_dir: js
+  secure: always
+
+- url: .*
+  static_files: index.html
+  upload: index.html
+  secure: always
+  http_headers:
+    X-Frame-Options: deny
+    Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
