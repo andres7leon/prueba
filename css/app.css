@@ -2,13 +2,17 @@ body {
     font-family: Montserrat;
 }
 
+nav {
+    -webkit-box-shadow: -2px 3px 15px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px 3px 15px -5px rgba(0,0,0,0.75);
+    box-shadow: -2px 3px 15px -5px rgba(0,0,0,0.75);
+}
+
 
 /**** Navbar ****/
 
 .cont-btn-search {
-    background: red;
     height: 40px;
-    width: 66%;
     position: relative;
 }
 
@@ -22,6 +26,7 @@ body {
     padding: 0 20px 0 10px;
     outline-color: #000;
     border: 0;
+    border-radius: 3px;
 }
 
 .cont-btn-search button{
@@ -47,6 +52,7 @@ body {
     font-weight: 600;
     font-size: 1.6em;
     vertical-align: middle;
+    color: #424242;
 }
 
 
@@ -65,7 +71,7 @@ body {
 .text-character {
     margin-top: -16px;
     font-weight: 700;
-    color:#2d2727;
+    color:#424242;
 }
 
 .description-character {
@@ -78,13 +84,22 @@ body {
     outline: none;
     color: #fff;
     background-color: #ec1e23;
-    padding: 7px;
+    padding: 10px;
     font-weight: 600;
     font-size: 0.7em;
     cursor: pointer;
 }
 
 
+.title-related {
+    font-weight: 700;
+    color: #616161;
+}
+
+.description-related p{
+    font-size: 0.8em;
+    color: #616161;
+}
 
 /**** global ****/
 
