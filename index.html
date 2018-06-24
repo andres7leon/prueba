@@ -7,89 +7,111 @@
     <meta name="description" content="Marvel">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <title>prueba</title>
+    <title>Marvel Characters</title>
     <link rel="apple-touch-icon" sizes="76x76" href="images/favicon.png" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900|Roboto:400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/app.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 
-<body class="bg-light2">
-
+<body class="bg-light2" ng-app="marvelApp" ng-controller="appController as appCtrl">
     <nav class="navbar navbar-light bg-dark2">
-        <div class="col-md-3">
-            <img src="./images/logo.png" width="150" height="70" class="d-inline-block align-top" alt="">
-        </div>
-        <div class="col-md-6">
-            <div class="cont-btn-search">
-                <input type="text" placeholder="Search characters ....">
-                <button type="submit"><i class="material-icons">search</i></button>
+        <div class="container-fluid">  
+            <div class="col-md-3">
+                <img src="./images/logo.png" width="150" height="60" class="d-inline-block align-top" alt="">
             </div>
+            <div class="col-md-6">
+                <div class="cont-btn-search">
+                    <input type="text" placeholder="Search characters ....">
+                    <button type="submit"><i class="material-icons">search</i></button>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
         </div>
-        <div class="col-md-3"></div>
     </nav>
-    <br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-8">
-                        <img src="./images/characters.png" alt=""><span class="text-sort">Characters</span>
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <img src="./images/characters.png" alt=""><span class="text-sort">Characters</span>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <select class="" id="">
+                                <option value="a">a</option>
+                                <option value="b">b</option>
+                                <option value="c">c</option>
+                                <option value="d">d</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-md-4 text-right">
-                        <select class="" id="">
-                            <option value="a">a</option>
-                            <option value="b">b</option>
-                            <option value="c">c</option>
-                            <option value="d">d</option>
-                        </select>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="">
-                            <div class="container">
-                                <br>
-                                <div class="card">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6">
-                                                <img class="img-character" src="./images/imagen1.png" width="100%">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="text-character">Nombreee</h4>
-                                                <p class="description-character">aca esta la description , ahakjsdhka jsdha asdlaks hdka jsdhkajsd asdkkja asdkas jdhakjs dhaksjdh</p>
-                                                <button class="btn-character">VIEW MORE</button>
-                                            </div>
-                                        </div><br>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <h5 class="title-related">Related comics</h5>                                        
-                                            </div>
-                                            <div class="col-md-6 description-related">
-                                                <p>Related comic name two lines</p>
-                                                <p>Related comic name two lines</p>
-                                            </div>
-                                            <div class="col-md-6 description-related">
-                                                <p>Related comic name two lines</p>
-                                                <p>Related comic name two lines</p>
-                                            </div>
-                                        </div>
-                                    </div>                                    
-                                </div>
-                                <br>
-                            </div>
+                </div>
 
-                            <div>
+                <br>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-6" ng-repeat="a in appCtrl.arrayCharacters">
+                        <div class="container">
+                            <br>
+                            <div class="card">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <img class="img-character" src="./images/imagen1.png" width="100%">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5 class="text-character">NOMBREEEE</h5>
+                                            <p class="description-character">aca esta la description , ahakjsdhka jsdha asdlaks hdka jsdhkajsd asdkkja asdkas jdhakjs dhaksjdh</p>
+                                            <button class="btn-character">VIEW MORE</button>
+                                        </div>
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="title-related">Related comics</h5>                                        
+                                        </div>
+                                        <div class="col-md-6 description-related">
+                                            <p>Related comic name two lines</p>
+                                            <p>Related comic name two lines</p>
+                                        </div>
+                                        <div class="col-md-6 description-related">
+                                            <p>Related comic name two lines</p>
+                                            <p>Related comic name two lines</p>
+                                        </div>
+                                    </div>
+                                </div>                                    
                             </div>
+                            <br>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 bg-warning">
-                cccccccccccccccccc
+            <div class="col-md-3 bg-light3">
+                <br>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12 text-center">
+                        <span class="text-sort"> <img src="./images/favourites.png" class="img-title-f"> My favourites</span>                        
+                    </div>
+                    <div class="col-md-8">
+                        <br>
+                        <div>
+                            <i class="material-icons icon-delete">delete_forever</i>
+                            <img src="./images/imagen2.png" width="100%">
+                            <p class="text-center title-favorites">Comic Tile mauris non tempor quam, et lacinia.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <br>
+                        <div>
+                            <i class="material-icons icon-delete">delete_forever</i>
+                            <img src="./images/imagen2.png" width="100%">
+                            <p class="text-center title-favorites">Comic Tile mauris non tempor quam, et lacinia.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

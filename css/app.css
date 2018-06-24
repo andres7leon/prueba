@@ -3,6 +3,7 @@ body {
 }
 
 nav {
+    z-index: 2;
     -webkit-box-shadow: -2px 3px 15px -5px rgba(0,0,0,0.75);
     -moz-box-shadow: -2px 3px 15px -5px rgba(0,0,0,0.75);
     box-shadow: -2px 3px 15px -5px rgba(0,0,0,0.75);
@@ -12,7 +13,7 @@ nav {
 /**** Navbar ****/
 
 .cont-btn-search {
-    height: 40px;
+    height: 50px;
     position: relative;
 }
 
@@ -26,7 +27,8 @@ nav {
     padding: 0 20px 0 10px;
     outline-color: #000;
     border: 0;
-    border-radius: 3px;
+    border-radius: 2px;
+    background: #fafafa;
 }
 
 .cont-btn-search button{
@@ -39,11 +41,18 @@ nav {
     border: 0;
     outline: none;
     cursor: pointer;
+    transition: all 0.5s ease;
 }
 
 .cont-btn-search button i{
     vertical-align: middle;
     color: #9E9E9E;
+    font-size: 30px;
+    transition: all 0.5s ease;
+}
+
+.cont-btn-search button:hover > i, .cont-btn-search button:focus > i{
+    color:#ee171f;
 }
 
 /**** sort ***/
@@ -62,7 +71,7 @@ nav {
     border-radius: 100%;
     width: 110%;
     margin-top: -20px;
-    margin-left: -15px;
+    margin-left: -30px;
     -webkit-box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
     box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
@@ -88,6 +97,8 @@ nav {
     font-weight: 600;
     font-size: 0.7em;
     cursor: pointer;
+    bottom: 5px;
+    position: absolute;
 }
 
 
@@ -96,10 +107,42 @@ nav {
     color: #616161;
 }
 
+.title-favorites {
+    font-weight: 700;
+    color: #424242;
+    margin-top: 15px;
+}
+
 .description-related p{
     font-size: 0.8em;
     color: #616161;
 }
+
+
+
+/* favorites */
+
+.img-title-f {
+    margin-right: 10px;
+    margin-left: -10px;
+}
+
+.icon-delete {   
+    background: #000;
+    color: #fff;
+    border-radius: 100px;
+    padding: 5px;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    cursor: pointer;
+}
+
+
+
+
+
+
 
 /**** global ****/
 
@@ -115,6 +158,10 @@ p {
     background-color: #f4f4f4;
 }
 
+.bg-light3 {
+    background-color: #ebebeb;
+}
+
 .color-dark2 {
     color:#2d2727;
 }
@@ -122,5 +169,13 @@ p {
 .card {
     border-radius: inherit;
     border: none;
+}
+
+select {
+    border-radius: 1px;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    outline-color: #000;
 }
 
