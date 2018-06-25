@@ -66,7 +66,7 @@
                                         <div class="col-md-6">
                                             <h5 class="text-character">NOMBREEEE</h5>
                                             <p class="description-character">aca esta la description , ahakjsdhka jsdha asdlaks hdka jsdhkajsd asdkkja asdkas jdhakjs dhaksjdh</p>
-                                            <button class="btn-character">VIEW MORE</button>
+                                            <button class="btn-character" ng-click="appCtrl.modalView()">VIEW MORE</button>
                                         </div>
                                     </div><br>
                                     <div class="row">
@@ -88,6 +88,21 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8 text-center btns-pages">
+                            <button><i class="material-icons">chevron_left</i></button>
+                            <button>1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button>4</button>                            
+                            <button ><i class="material-icons text-dark2">navigate_next</i></button>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="col-md-3 bg-light3">
                 <br>
@@ -114,7 +129,54 @@
                 </div>
             </div>
         </div>
+        
+
     </div>
+
+
+<!--button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button-->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <i class="material-icons" data-dismiss="modal" aria-label="Close">close</i>
+        <!--i class="material-icons">cancel</i-->
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="./images/imagen2.png" class="img-modal">
+                </div>
+                <div class="col-md-7">
+                    <h6 class="title-body-modal">ALL NEW, ALL-DIFERENT AVENGERS (2015) #1.1</h6>
+                    <p>
+                        askñdj lakjsdl iasdijal lajsjs dle ao pkjsld laksdmane ashkdkajs d asdakjshda sd ajsd asl dainq wdjaidalksdjais dalsdasdka asdka
+                    </p>
+                </div>                            
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-footer-mv">
+            
+            <button class="bg-light4"><img src="./images/shopping-cart.png">Buy for $3.99</button>
+            <button class="bg-dark3" ng-click="appCtrl.addFavorites()"><img src="./images/btn-favourites-primary.png">added to favourites</button>
+            <button class="btn-add-mv" ng-click="appCtrl.removeFavorites()" id="btn-add-mv"><img src="./images/btn-favourites-default.png">add to favourites</button>
+            
+        </div>
+        <!--button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button-->
+      </div>
+    </div>
+  </div>
+</div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>

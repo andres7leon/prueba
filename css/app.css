@@ -119,6 +119,29 @@ nav {
 }
 
 
+/** buttons pages next */
+
+.btns-pages button {
+    cursor: pointer; 
+    border: 0;
+    border-radius: 0;
+    height: 40px;
+    width: 40px;
+    background: #fff;
+    -webkit-box-shadow: 0px 1px 8px 0px rgba(178, 178, 178, 0.75);
+    -moz-box-shadow: 0px 1px 8px 0px rgba(178, 178, 178, 0.75);
+    box-shadow: 0px 1px 8px 0px rgba(178, 178, 178, 0.75);
+    color: #c5c1c2;
+    font-weight: 600;
+    outline-color: #ccc;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.btns-pages button i {   
+    vertical-align: top;
+}
+
 
 /* favorites */
 
@@ -140,6 +163,95 @@ nav {
 
 
 
+/** modal **/
+
+.modal-content {
+    border-radius: 0;
+    border: 0;
+}
+
+.modal-header {
+    border: 0;
+    padding: 10px 10px 0 0;
+}
+
+.modal-header i {
+    border-radius: 100px;
+    background: #2e2828;
+    color: #fff;
+    font-size: 14px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+
+.modal-body {
+    padding-top: 0;
+}
+
+.modal-body .img-modal {
+    width: 100%;
+    max-width:  220px;
+}
+
+.modal-body .title-body-modal{
+    font-weight: 700;
+    color: #424242;    
+}
+
+.modal-body p {
+    font-size: 0.8em;
+    color: #616161;    
+}
+
+.modal-footer {
+    padding: 0;
+    border: 0;
+}
+
+.modal-footer-mv {
+    width: 100%;
+    position: relative;
+    height: 60px;
+    overflow: hidden;
+}
+
+.modal-footer-mv button{
+    width: 50%;
+    float: right;
+    border: 0;
+    font-family: Roboto;
+    height: 100%;
+    font-size: 0.8em;
+    outline: none;
+    cursor: pointer;
+    color: #ec1d23;
+    font-weight: 800;
+    padding: 0;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+}
+
+.modal-footer-mv button:hover{
+    opacity: 0.8;
+}
+
+.modal-footer-mv .btn-add-mv {
+    color: #3c3231;
+    background: #f0f0f0;
+    bottom: 0;
+    position: absolute;
+    height: 0;
+    border: 0;
+    overflow: hidden;
+}
+
+.modal-footer-mv button img{
+    width: 30px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
 
 
 
@@ -148,6 +260,9 @@ nav {
 
 p {
     word-wrap: break-word;    
+}
+.height-100{
+    height: 100% !important;
 }
 
 .bg-dark2{
@@ -160,6 +275,18 @@ p {
 
 .bg-light3 {
     background-color: #ebebeb;
+}
+
+.bg-light4 {
+    background-color: #dcdcdc;
+}
+
+.bg-dark3 {
+    background-color: #322827;
+}
+
+.text-dark2 {
+    color: #424242;
 }
 
 .color-dark2 {
@@ -179,3 +306,7 @@ select {
     outline-color: #000;
 }
 
+
+.modal.show .modal-dialog {
+    max-width: 600px;
+}
