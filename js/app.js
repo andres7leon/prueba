@@ -18,6 +18,7 @@
 
         mv.arrayCharacters = [];
         mv.arrayFavorites = [];
+        mv.paginationArray = [1,2,3,4,5];
 
         mv.characterSearch = '';
 
@@ -36,6 +37,8 @@
 
         	if(mv.characterSearch !== ""){
 
+                $("#loading").show();
+
         		mv.selectSort = (mv.selectSort === '') ? mv.selectSort = 'name' : mv.selectSort;
         		mv.selectView = (mv.selectView === '') ? mv.selectView = '10' : mv.selectView;
 
@@ -44,13 +47,20 @@
 		            url: urlMV +'characters'+ apikey + '&nameStartsWith=' + mv.characterSearch + '&orderBy=' + mv.selectSort + '&limit=100' ,
 		        }).then(function mySuccess(result) {
 
+                    $("#loading").hide();
+
 		            var result = result.data;
 		           	console.log("result",result);
 		           	mv.arrayCharacters = result.data.results;
 
-		        }, function myError(result) {
+                    if(mv.arrayCharacters.length === 0){
+                        var notification = alertify.notify('No results found', 'warning', 5, function(){});                        
+                    }
 
-		           	alert("error en el aplicativo")
+                }, function myError(result) {
+
+                    $("#loading").hide();
+                    var notification = alertify.notify('Error, please try later ', 'error', 5, function(){});
 
 		        });
 
@@ -90,7 +100,7 @@
 
 	        }, function myError(result) {
 
-	           	alert("error en el aplicativo")
+	           	var notification = alertify.notify('Error, please try later ', 'error', 5, function(){});
 
 	        });
 

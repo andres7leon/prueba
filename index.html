@@ -14,22 +14,26 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900|Roboto:400,500,700,900|Poppins:400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/app.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css"/>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
 </head>
 
 <body class="bg-light2" ng-app="marvelApp" ng-controller="appController as appCtrl">
     <nav class="navbar navbar-light bg-dark2">
         <div class="container-fluid">  
-            <div class="col-md-3">
+            <div class="col-md-3 text-center text-md-left">
                 <img src="./images/logo.png" width="150" height="60" class="d-inline-block align-top" alt="">
             </div>
             <div class="col-md-6">
                 <div class="cont-btn-search">
-                    <input type="text" placeholder="Search characters ...." ng-model="appCtrl.characterSearch">
+                    <input type="text" placeholder="Search characters ...." ng-model="appCtrl.characterSearch" ng-enter="appCtrl.searchCharacters()">
                     <button type="submit" ng-click="appCtrl.searchCharacters()"><i class="material-icons">search</i></button>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="d-none d-sm-block col-md-3"></div>
         </div>
     </nav>
     <div class="container-fluid">
@@ -38,7 +42,7 @@
                 <br>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-12 col-md-7 text-center text-md-left">
                             <img src="./images/characters.png" alt=""><span class="text-sort">Characters</span>
                         </div>
                         <div class="col-md-3 text-right">
@@ -67,10 +71,10 @@
                             <div class="card">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6">
+                                        <div class="col-6 col-md-6 col-sm-6">
                                             <img class="img-character" src="{{i.thumbnail.path +'.'+ i.thumbnail.extension}}" width="100%">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-6 col-md-6">
                                             <h6 class="text-character text-upper">{{i.name}}</h6>
                                             <p class="description-character">{{(i.description === '') ? 'Sorry, this character does not have a description.' : i.description}}</p>
                                             <button class="btn-character" ng-click="appCtrl.modalView(i.id)">VIEW MORE</button>
@@ -80,7 +84,7 @@
                                         <div class="col-md-12">
                                             <h5 class="title-related">Related comics</h5>                                        
                                         </div>
-                                        <div class="col-md-6 description-related" ng-repeat="o in i.comics.items | limitTo:4 ">
+                                        <div class="col-6 col-md-6 description-related" ng-repeat="o in i.comics.items | limitTo:4 ">
                                             <p>{{o.name}}</p>
                                         </div>
                                         <div class="col-md-12 description-related" ng-if="i.comics.items.length === 0">
@@ -98,10 +102,7 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8 text-center btns-pages">
                             <button><i class="material-icons">chevron_left</i></button>
-                            <button>1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button>4</button>                            
+                            <button ng-repeat="i in appCtrl.paginationArray">{{i}}</button>                          
                             <button ><i class="material-icons text-dark2">navigate_next</i></button>
                             <br><br>
                         </div>
@@ -173,6 +174,18 @@
     </div>
   </div>
 </div>
+
+
+<div class="cs-loader" id="loading" style="display: none">
+  <div class="cs-loader-inner">
+    <label><img src="./images/btn-favourites-primary.png"></label>
+    <label><img src="./images/btn-favourites-primary.png"></label>
+    <label><img src="./images/btn-favourites-primary.png"></label>
+    <label><img src="./images/btn-favourites-primary.png"></label>
+    <label><img src="./images/btn-favourites-primary.png"></label>
+  </div>
+</div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
