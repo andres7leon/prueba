@@ -29,6 +29,7 @@ nav {
     border: 0;
     border-radius: 2px;
     background: #fafafa;
+    font-family: Poppins;
 }
 
 .cont-btn-search button{
@@ -69,23 +70,41 @@ nav {
 
 .img-character {
     border-radius: 100%;
-    width: 110%;
+    max-width: 110%;
     margin-top: -20px;
     margin-left: -30px;
     -webkit-box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
     box-shadow: 3px 5px 16px -7px rgba(0,0,0,0.75);
+    height: 250px;
+    width: 250px;
 }
 
 .text-character {
-    margin-top: -16px;
+    margin-top: -11px;
     font-weight: 700;
-    color:#424242;
+    color: #424242;
+    font-size: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 20px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .description-character {
     font-size: 0.8em;
     color: #796f6e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 22px;
+    max-height: 150px;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    font-family: Poppins;
+     margin-top: 15px;
 }
 
 .btn-character {
@@ -116,6 +135,17 @@ nav {
 .description-related p{
     font-size: 0.8em;
     color: #616161;
+    font-family: Poppins;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 20px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.p-no-result{
+    margin-bottom: 52px;
 }
 
 
@@ -257,6 +287,9 @@ nav {
 
 
 /**** global ****/
+.text-upper {
+    text-transform: uppercase;   
+}
 
 p {
     word-wrap: break-word;    

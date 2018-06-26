@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900|Roboto:400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900|Roboto:400,500,700,900|Poppins:400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/app.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
@@ -25,8 +25,8 @@
             </div>
             <div class="col-md-6">
                 <div class="cont-btn-search">
-                    <input type="text" placeholder="Search characters ....">
-                    <button type="submit"><i class="material-icons">search</i></button>
+                    <input type="text" placeholder="Search characters ...." ng-model="appCtrl.characterSearch">
+                    <button type="submit" ng-click="appCtrl.searchCharacters()"><i class="material-icons">search</i></button>
                 </div>
             </div>
             <div class="col-md-3"></div>
@@ -38,15 +38,22 @@
                 <br>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-7">
                             <img src="./images/characters.png" alt=""><span class="text-sort">Characters</span>
                         </div>
                         <div class="col-md-3 text-right">
-                            <select class="" id="">
-                                <option value="a">a</option>
-                                <option value="b">b</option>
-                                <option value="c">c</option>
-                                <option value="d">d</option>
+                            <select class="" id="" ng-model="appCtrl.selectSort">
+                                <option value="">Sort by</option>
+                                <option value="name">Name</option>
+                                <option value="modified">Modified</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <select class="" id="" ng-model="appCtrl.selectView">
+                                <option value="">View</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="all">All</option>
                             </select>
                         </div>
                     </div>
@@ -54,32 +61,30 @@
 
                 <br>
                 <div class="row justify-content-md-center">
-                    <div class="col-md-6" ng-repeat="a in appCtrl.arrayCharacters">
+                    <div class="col-md-6" ng-repeat="i in appCtrl.arrayCharacters">
                         <div class="container">
                             <br>
                             <div class="card">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
-                                            <img class="img-character" src="./images/imagen1.png" width="100%">
+                                            <img class="img-character" src="{{i.thumbnail.path +'.'+ i.thumbnail.extension}}" width="100%">
                                         </div>
                                         <div class="col-md-6">
-                                            <h5 class="text-character">NOMBREEEE</h5>
-                                            <p class="description-character">aca esta la description , ahakjsdhka jsdha asdlaks hdka jsdhkajsd asdkkja asdkas jdhakjs dhaksjdh</p>
-                                            <button class="btn-character" ng-click="appCtrl.modalView()">VIEW MORE</button>
+                                            <h6 class="text-character text-upper">{{i.name}}</h6>
+                                            <p class="description-character">{{(i.description === '') ? 'Sorry, this character does not have a description.' : i.description}}</p>
+                                            <button class="btn-character" ng-click="appCtrl.modalView(i.id)">VIEW MORE</button>
                                         </div>
                                     </div><br>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h5 class="title-related">Related comics</h5>                                        
                                         </div>
-                                        <div class="col-md-6 description-related">
-                                            <p>Related comic name two lines</p>
-                                            <p>Related comic name two lines</p>
+                                        <div class="col-md-6 description-related" ng-repeat="o in i.comics.items | limitTo:4 ">
+                                            <p>{{o.name}}</p>
                                         </div>
-                                        <div class="col-md-6 description-related">
-                                            <p>Related comic name two lines</p>
-                                            <p>Related comic name two lines</p>
+                                        <div class="col-md-12 description-related" ng-if="i.comics.items.length === 0">
+                                            <p class="p-no-result">No related comics were found</p>
                                         </div>
                                     </div>
                                 </div>                                    
@@ -110,20 +115,12 @@
                     <div class="col-md-12 text-center">
                         <span class="text-sort"> <img src="./images/favourites.png" class="img-title-f"> My favourites</span>                        
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8" ng-repeat="i in appCtrl.arrayFavorites">
                         <br>
                         <div>
-                            <i class="material-icons icon-delete">delete_forever</i>
-                            <img src="./images/imagen2.png" width="100%">
-                            <p class="text-center title-favorites">Comic Tile mauris non tempor quam, et lacinia.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <br>
-                        <div>
-                            <i class="material-icons icon-delete">delete_forever</i>
-                            <img src="./images/imagen2.png" width="100%">
-                            <p class="text-center title-favorites">Comic Tile mauris non tempor quam, et lacinia.</p>
+                            <i class="material-icons icon-delete" ng-click="appCtrl.deleteFavorite(i.id)">delete_forever</i>
+                            <img src="{{i.img}}" width="100%">
+                            <p class="text-center title-favorites">{{i.title}}</p>
                         </div>
                     </div>
                 </div>
@@ -134,16 +131,16 @@
     </div>
 
 
-<!--button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<!--button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMore">
   Launch demo modal
 </button-->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalMore" tabindex="-1" role="dialog" aria-labelledby="modalMoreLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <h5 class="modal-title" id="modalMoreLabel"></h5>
         <i class="material-icons" data-dismiss="modal" aria-label="Close">close</i>
         <!--i class="material-icons">cancel</i-->
       </div>
@@ -151,12 +148,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <img src="./images/imagen2.png" class="img-modal">
+                    <img src="{{appCtrl.modalImg}}" class="img-modal">
                 </div>
                 <div class="col-md-7">
-                    <h6 class="title-body-modal">ALL NEW, ALL-DIFERENT AVENGERS (2015) #1.1</h6>
+                    <h6 class="title-body-modal">{{appCtrl.modalTitle}}</h6>
                     <p>
-                        askñdj lakjsdl iasdijal lajsjs dle ao pkjsld laksdmane ashkdkajs d asdakjshda sd ajsd asl dainq wdjaidalksdjais dalsdasdka asdka
+                        {{appCtrl.modalDescription}}
                     </p>
                 </div>                            
             </div>
