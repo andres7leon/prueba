@@ -190,9 +190,10 @@ nav {
     color: #c5c1c2;
     font-weight: 600;
     outline-color: #ccc;
-    margin-left: 3px;
-    margin-right: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
     transition: all 0.5s;
+    outline: none;
 }
 
 .btns-pages button:hover {
@@ -205,6 +206,16 @@ nav {
     vertical-align: top;
 }
 
+.btn-pages-select{
+    box-shadow: none !important;
+    color: #424242 !important;
+}
+
+.btn-one-page button:nth-child(0){
+    
+    color:red !important;
+
+}
 
 
 /* favorites */

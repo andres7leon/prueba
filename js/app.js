@@ -198,7 +198,15 @@
 				mv.orderView();
         	}
 
-        }
+        };
+
+        mv.changePagination = function(page,$event){
+
+            $('.btns-pages button').removeClass('btn-pages-select');
+            $(event.target).addClass('btn-pages-select');
+            mv.arrayCharacters = mv.arrayPagination[page];                
+
+        };
 
         mv.main = function() {
 
