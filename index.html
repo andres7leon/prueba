@@ -36,7 +36,7 @@
             <div class="d-none d-sm-block col-md-3"></div>
         </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid cont-app">
         <div class="row">
             <div class="col-md-9">
                 <br>
@@ -45,19 +45,19 @@
                         <div class="col-12 col-md-7 text-center text-md-left">
                             <img src="./images/characters.png" alt=""><span class="text-sort">Characters</span>
                         </div>
-                        <div class="col-md-3 text-right">
-                            <select class="" id="" ng-model="appCtrl.selectSort">
+                        <div class="col-6 col-md-3 text-right">
+                            <select ng-model="appCtrl.selectSort" ng-change="appCtrl.changeSelectOrder()">
                                 <option value="">Sort by</option>
                                 <option value="name">Name</option>
                                 <option value="modified">Modified</option>
                             </select>
                         </div>
-                        <div class="col-md-2 text-right">
-                            <select class="" id="" ng-model="appCtrl.selectView">
+                        <div class="col-6 col-md-2 text-right">
+                            <select ng-model="appCtrl.selectView" ng-change="appCtrl.orderView()">
                                 <option value="">View</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
-                                <option value="all">All</option>
+                                <option value="50">50</option>
                             </select>
                         </div>
                     </div>
@@ -87,6 +87,9 @@
                                         <div class="col-6 col-md-6 description-related" ng-repeat="o in i.comics.items | limitTo:4 ">
                                             <p>{{o.name}}</p>
                                         </div>
+                                        <div class="col-12 col-md-12 description-related" ng-if="i.comics.items.length === 1 || i.comics.items.length === 2">
+                                            <p>&nbsp;</p>
+                                        </div>
                                         <div class="col-md-12 description-related" ng-if="i.comics.items.length === 0">
                                             <p class="p-no-result">No related comics were found</p>
                                         </div>
@@ -96,6 +99,7 @@
                             <br>
                         </div>
                     </div>
+
                 </div>
                 
                 <div class="container">
@@ -112,11 +116,11 @@
             </div>
             <div class="col-md-3 bg-light3">
                 <br>
-                <div class="row justify-content-md-center">
+                <div class="row justify-content-md-center justify-content-center">
                     <div class="col-md-12 text-center">
                         <span class="text-sort"> <img src="./images/favourites.png" class="img-title-f"> My favourites</span>                        
                     </div>
-                    <div class="col-md-8" ng-repeat="i in appCtrl.arrayFavorites">
+                    <div class="col-5 col-md-8" ng-repeat="i in appCtrl.arrayFavorites">
                         <br>
                         <div>
                             <i class="material-icons icon-delete" ng-click="appCtrl.deleteFavorite(i.id)">delete_forever</i>
@@ -148,13 +152,13 @@
       <div class="modal-body">
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-5 col-md-5">
                     <img src="{{appCtrl.modalImg}}" class="img-modal">
                 </div>
-                <div class="col-md-7">
+                <div class="col-7 col-md-7">
                     <h6 class="title-body-modal">{{appCtrl.modalTitle}}</h6>
-                    <p>
-                        {{appCtrl.modalDescription}}
+                    <p class="description-body-modal">
+                        {{(appCtrl.modalDescription === '' || appCtrl.modalDescription === null ) ? 'Sorry but this comic has no description' : appCtrl.modalDescription}}
                     </p>
                 </div>                            
             </div>
@@ -166,7 +170,7 @@
             <button class="bg-light4"><img src="./images/shopping-cart.png">Buy for $3.99</button>
             <button class="bg-dark3" ng-click="appCtrl.addFavorites()"><img src="./images/btn-favourites-primary.png">added to favourites</button>
             <button class="btn-add-mv" ng-click="appCtrl.removeFavorites()" id="btn-add-mv"><img src="./images/btn-favourites-default.png">add to favourites</button>
-            
+            <br>
         </div>
         <!--button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button-->
