@@ -7,6 +7,7 @@
     <meta name="description" content="Marvel">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Jhonatan-Andres-Leon-Torres">
     <title>Marvel Characters</title>
     <link rel="apple-touch-icon" sizes="76x76" href="images/favicon.png" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
@@ -32,7 +33,9 @@
                     <button type="submit" ng-click="appCtrl.searchCharacters()"><i class="material-icons">search</i></button>
                 </div>
             </div>
-            <div class="d-none d-sm-block col-md-3"></div>
+            <div class="col-md-3 text-white text-center pointer">
+                <p class="addRandom"><span ng-show="appCtrl.randomComics" ng-click="appCtrl.addRandomComics()">Add 3 random comics </span></p>
+            </div>
         </div>
     </nav>
     <div class="container-fluid cont-app">
@@ -41,8 +44,10 @@
                 <br>
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-md-7 text-center text-md-left">
+                        <div class="col-12 col-md-4 text-center text-md-left">
                             <img src="./images/characters.png" alt=""><span class="text-sort">Characters</span>
+                        </div>
+                        <div class="col-md-3">
                         </div>
                         <div class="col-6 col-md-3 text-right">
                             <select ng-model="appCtrl.selectSort" ng-change="appCtrl.changeSelectOrder()">
@@ -102,7 +107,7 @@
                 <div class="container">
                     <div class="row justify-content-md-center">
                         <div class="col-md-8 text-center btns-pages">
-                            <button ng-repeat="i in appCtrl.paginationArray" ng-click="appCtrl.changePagination(i,this)" >{{i}}</button>
+                            <button ng-repeat="i in appCtrl.paginationArray" ng-click="appCtrl.changePagination(i,this)">{{i}}</button>
                             <br>
                             <br>
                         </div>
@@ -126,13 +131,14 @@
                 </div>
             </div>
         </div>
-    
     </div>
 
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">Todos los derechos reservados.</span>
-      </div>
+    <footer class="footer bg-dark2">
+        <br>
+        <div class="container text-center text-md-left">
+            <span class="text-white">All rights reserved</span>
+        </div>
+        <br>
     </footer>
 
     <!-- Modal -->

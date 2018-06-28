@@ -16,6 +16,7 @@
 
         //var urlMV = "characters/1011054/comics?limit=1&apikey=90bf7bba941d17613251e878105fc07a&ts=9&hash=3046f4f71f1df1f644121158538b8ca5"
         mv.dataCharacters;
+        mv.randomComics = false;
         mv.arrayCharacters = [];
         mv.arrayFavorites = [];
         mv.paginationArray = [];
@@ -26,12 +27,18 @@
         mv.selectSort = '';
         mv.selectView = '';
 
-        function clearModal(){
+        var clearModal = function (){
 	    	mv.modalTitle = 'Title'; 
 	       	mv.modalImg = './images/imagen2.png';
 	       	mv.idModal = 0;
 	       	mv.modalDescription = 'Description';
 	       	$("#btn-add-mv").removeClass('height-100');
+        }
+
+        var addSelectPage = function(){
+        	setTimeout(function(){
+        		$('.btns-pages button:nth-child(1)').addClass('btn-pages-select')
+        	},1000)
         }
        
         mv.searchCharacters = function(){
@@ -52,12 +59,19 @@
 
 		            mv.dataCharacters = result.data.data.results;
 
-
                     if(mv.dataCharacters.length === 0){
                         var notification = alertify.notify('No results found', 'info', 5, function(){});                        
                     }else{
+
+                    	if(mv.arraySearchs.findIndex(i => i === mv.characterSearch) === -1){
+                    		mv.randomComics = true;
+        				}else{
+        					mv.randomComics = false;        					
+        				}
+
 		            	localStorage.dataMarvel = JSON.stringify(mv.dataCharacters);
                    		mv.orderView();
+                   		addSelectPage();
                     }
 
                 }, function myError(result) {
@@ -69,7 +83,7 @@
 
         	}else{
 
-        		alert("porfavor ingrese un personaje")
+	           	var notification = alertify.notify('Please enter a character to search', 'error', 7, function(){});
 
         	}
 
@@ -88,15 +102,13 @@
 
         		$("#loading").hide();
 	            var result = result.data;
-	            var dataModal = result.data.results[0]
-	           	console.log("dataModal",dataModal);
+	            var dataModal = result.data.results[0];
 
 	           	if(dataModal !== undefined){
 
 		           	mv.modalTitle = dataModal.title;
 		           	mv.modalImg =  dataModal.thumbnail.path +'.'+dataModal.thumbnail.extension;
 		           	mv.idModal = dataModal.id;
-		           	console.log("dataModal.description",dataModal.description)
 		           	mv.modalDescription = dataModal.description;
 	            	$("#modalMore").modal();
 
@@ -114,8 +126,6 @@
 	           	var notification = alertify.notify('Error, please try later ', 'error', 5, function(){});
 
 	        });
-
-            console.log("id comic",id);
 
         };
 
@@ -152,7 +162,6 @@
 	        	var numPagination = Math.ceil(mv.dataCharacters.length/parseInt(mv.selectView));
 	                    	
 	        	for (var i = 1; i <= numPagination ; i++) {
-	        		console.log("numPagination",i);
 	        		mv.paginationArray.push(i);
 	        	}
 
@@ -173,8 +182,6 @@
 	    			}
 
 	    		}
-
-	    		console.log("mv.arrayPagination",mv.arrayPagination)
 
 	    		mv.arrayCharacters = mv.arrayPagination[1];
 
@@ -208,13 +215,94 @@
 
         };
 
+
+        mv.addRandomComics = function(){
+
+        	$("#loading").show();
+        	mv.arraySearchs.push(mv.characterSearch);
+        	mv.countComicsRandom = 1;
+        	mv.arrayRandomComics = [];
+        	for(var i in mv.dataCharacters){
+				mv.searchComics(mv.dataCharacters[i].id);
+        	}
+
+        };
+
+        mv.countComicsRandom = 1;
+        mv.arrayRandomComics = [];
+        mv.arraySearchs = [];
+
+        mv.searchComics = function(id){
+
+        	$http({
+	            method: "GET",
+	            url: urlMV +'characters/'+ id + '/comics' + apikey + '&limit=3',
+	        }).then(function mySuccess(result) {
+	            
+	            var result = result.data;
+
+	            for(var i in result.data.results){
+	            	mv.arrayRandomComics.push(result.data.results[i]);
+	            }
+
+	            mv.countComicsRandom++;
+
+	            if(mv.countComicsRandom === mv.dataCharacters.length){
+	            	mv.addFavoritesRandom();
+	            }
+
+	        }, function myError(result) {
+
+        		$("#loading").hide();
+	           	var notification = alertify.notify('Error, please try later ', 'error', 5, function(){});
+
+	        });
+        }
+
+        mv.addFavoritesRandom = function(){
+
+        	var aComics = mv.arrayRandomComics;
+
+        	if(aComics.length === 0){
+        		var notification = alertify.notify('No results found', 'error', 5, function(){});
+        	}else{
+
+        		aComics.sort(function(a,b){
+				  // Turn your strings into dates, and then subtract them
+				  // to get a value that is either negative, positive, or zero.
+				  return new Date(b.modified) - new Date(a.modified);
+				});
+
+
+        		if(mv.arrayFavorites.findIndex(k => k.id === aComics[0].id) === -1){
+    				mv.arrayFavorites.push({id:aComics[0].id,title:aComics[0].title,img:aComics[0].thumbnail.path+'.'+aComics[0].thumbnail.extension});
+    			}
+
+    			var aux = aComics.length-1;
+
+    			if(mv.arrayFavorites.findIndex(k => k.id === aComics[aux].id) === -1){
+    				mv.arrayFavorites.push({id:aComics[aux].id,title:aComics[aux].title,img:aComics[aux].thumbnail.path+'.'+aComics[aux].thumbnail.extension});
+    			}
+
+    			if(mv.arrayFavorites.findIndex(k => k.id === aComics[1].id) === -1){
+    				mv.arrayFavorites.push({id:aComics[1].id,title:aComics[1].title,img:aComics[1].thumbnail.path+'.'+aComics[1].thumbnail.extension});
+    			}
+
+    			mv.randomComics = false;
+
+        		mv.updateFavoritesLocal()
+        	}
+
+        	$("#loading").hide();
+        };
+
         mv.main = function() {
 
         	if(localStorage.dataMarvel !== undefined){
         		mv.dataCharacters = JSON.parse(localStorage.dataMarvel);
         		mv.selectView = '10';
-        		console.log("mv.dataCharacters",mv.dataCharacters)
         		mv.orderView()
+        		addSelectPage();
         	}
 
         	if(localStorage.favoritesMarvel !== undefined){
@@ -223,6 +311,8 @@
 
         	clearModal();
         	
+        	
+
         };
 
         mv.main();
