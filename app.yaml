@@ -1,5 +1,5 @@
-application: 
-version: 
+application: andres-leon-marvel
+version: 1
 runtime: php55
 api_version: 1
 threadsafe: true

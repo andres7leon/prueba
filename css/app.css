@@ -9,11 +9,7 @@ nav {
     box-shadow: -2px 3px 15px -5px rgba(0, 0, 0, 0.75);
 }
 
-
-
-
-
-/**** Navbar ****/
+/**** Navbar start ****/
 
 .cont-btn-search {
     height: 50px;
@@ -75,15 +71,12 @@ nav {
     background: url(../images/addRandom.png) repeat-y;
     -webkit-background-clip: text;
     background-clip: text;
-    /* Animate Background Image */
     -webkit-text-fill-color: transparent;
     -webkit-animation: aitf 80s linear infinite;
-    /* Activate hardware acceleration for smoother animations */
     -webkit-transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
 }
 
-.ajs-message.ajs-custom { color: #31708f;  background-color: #d9edf7;  border-color: #31708f; }
 /* Animate Background Image */
 
 @-webkit-keyframes aitf {
@@ -95,14 +88,15 @@ nav {
     }
 }
 
+/**** Navbar end ****/
 
-/**** cont-app *****/
+
+/**** cont app body start ****/
 
 .cont-app {
     height: calc(100% - 60px);
+    min-height: calc(100vh - 148px)
 }
-
-
 
 /**** sort ***/
 
@@ -112,9 +106,6 @@ nav {
     vertical-align: middle;
     color: #424242;
 }
-
-
-
 
 /**** cards or list Characters ****/
 
@@ -145,6 +136,11 @@ nav {
     line-height: 20px;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    transition: all 0.5s;
+}
+
+.card:hover .text-character  {
+    color: #ec1e23;
 }
 
 .description-character {
@@ -201,8 +197,6 @@ nav {
 .p-no-result {
     margin-bottom: 52px;
 }
-
-
 
 
 /** buttons pages next */
@@ -374,13 +368,10 @@ nav {
     margin-right: 5px;
 }
 
+/**** cont app body end ****/
 
 
-
-
-
-
-/**** global ****/
+/**** class global start ****/
 
 .text-upper {
     text-transform: uppercase;
@@ -439,11 +430,11 @@ select {
     cursor: pointer;
 }
 
+/**** class global end ****/
 
 
 
-
-/** loading */
+/**** loading  start ****/
 
 .cs-loader {
     position: absolute;
@@ -541,6 +532,10 @@ select {
     animation: lol 3s 500ms infinite ease-in-out;
 }
 
+/**** loading  end ****/
+
+
+/**** media resposive movil start ****/
 
 @media (max-width: 768px) {
 
@@ -563,3 +558,5 @@ select {
         position: relative;
     }
 }
+
+/**** media resposive movil end ****/
